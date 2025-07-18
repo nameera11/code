@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM XSS Demo</title>
+</head>
+<body>
+    <h1>Welcome to Our secure site</h1>
+    <div id="user-info"></div>
+
+    <script>
+        const params=new URLSearchParams(window.location.search);
+        const user = params.get("user");
+        const userInfoDiv=document.getElementById("user-info");
+        userInfoDiv.innerHTML=`<p>User:${user}</p>`;
+    </script>
+</body>
+</html>
