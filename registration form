@@ -1,0 +1,16 @@
+<?php
+// Connect to the database
+$db = new PDO('sqlite:rainfall.db');
+
+// Get user input
+$email = $_POST['email'];
+
+// Generate API key
+$api_key = bin2hex(random_bytes(16)); // 32-character random key
+
+// Insert into database
+$stmt = $db->prepare("INSERT INTO users (email, api_key) VALUES (?, ?)");
+$stmt->execute([$email, $api_key]);
+
+echo "Your API Key: " . $api_key;
+?>
